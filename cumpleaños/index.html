@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Invitación de Cumpleaños</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #0a2a43; /* Azul Marino */
+        font-family: Arial, sans-serif;
+        text-align: center;
+      }
+      .container {
+        position: relative;
+      }
+      .envelope {
+        width: 220px;
+        height: 160px;
+        background-color: #ffcc80; /* Color pastel que combina */
+        position: relative;
+        border: 2px solid #ffab40;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: transform 0.5s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .flap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        background-color: #ffab40;
+        clip-path: polygon(0 0, 100% 0, 50% 100%);
+        transition: transform 0.5s ease;
+      }
+      .message {
+        display: none;
+        font-size: 22px;
+        color: #fff;
+        margin-top: 20px;
+        font-weight: bold;
+      }
+      .gif-container {
+        display: none;
+        margin-top: 15px;
+      }
+      .gif-container img {
+        width: 250px;
+        border-radius: 10px;
+      }
+      .buttons {
+        margin-top: 20px;
+        display: none;
+        position: relative;
+      }
+      .btn {
+        padding: 12px 25px;
+        font-size: 18px;
+        margin: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .btn.no {
+        background-color: red;
+        color: white;
+        position: absolute;
+      }
+      .btn.yes {
+        background-color: green;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container" onclick="openEnvelope()">
+      <div class="envelope">
+        <div class="flap" id="flap"></div>
+      </div>
+      <p class="message" id="message">¡Te invito a mi cumpleaños! 🎉🥳</p>
+      <div class="gif-container" id="gifContainer">
+        <img
+          src="https://media1.tenor.com/m/bCxvlOMO4gUAAAAC/its-your-birthday-happy-birthday.gif"
+          alt="Feliz Cumpleaños"
+        />
+      </div>
+      <div class="buttons" id="buttons">
+        <button class="btn no" id="noBtn">No quiero ir</button>
+        <button class="btn yes" onclick="redirectToGift()">
+          Voy a llevarte tu regalo
+        </button>
+      </div>
+    </div>
+
+    <script>
+      function openEnvelope() {
+        document.getElementById("flap").style.transform = "rotateX(180deg)";
+        setTimeout(() => {
+          document.getElementById("message").style.display = "block";
+          document.getElementById("gifContainer").style.display = "block";
+          document.getElementById("buttons").style.display = "block";
+        }, 500);
+      }
+
+      function redirectToGift() {
+        window.location.href = "gift.html";
+      }
+
+      document
+        .getElementById("noBtn")
+        .addEventListener("mouseover", function () {
+          let x = Math.random() * (window.innerWidth - 100);
+          let y = Math.random() * (window.innerHeight - 50);
+          this.style.position = "absolute";
+          this.style.left = `${x}px`;
+          this.style.top = `${y}px`;
+        });
+    </script>
+  </body>
+</html>
